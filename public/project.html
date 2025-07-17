@@ -86,7 +86,7 @@
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
-    document.getElementById("monthYear").textContent = `${monthNames[month]} ${year}`;
+    document.getElementById("monthYear").textContent = ${monthNames[month]} ${year};
 
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -95,7 +95,7 @@
     calendarDays.innerHTML = "";
 
     for (let i = 0; i < firstDay; i++) {
-      calendarDays.innerHTML += `<div></div>`;
+      calendarDays.innerHTML += <div></div>;
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
@@ -104,7 +104,7 @@
         month === new Date().getMonth() &&
         year === new Date().getFullYear();
 
-      calendarDays.innerHTML += `<div class="${isToday ? "today" : ""}">${day}</div>`;
+      calendarDays.innerHTML += <div class="${isToday ? "today" : ""}">${day}</div>;
     }
   }
 
@@ -120,7 +120,6 @@
 
   renderCalendar();
 </script>
-
 
 </body>
 </html>
