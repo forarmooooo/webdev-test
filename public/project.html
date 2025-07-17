@@ -1,125 +1,187 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ปฏิทินนักศึกษา</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MJU Student Calendar</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
       font-family: 'Sarabun', sans-serif;
-      background: #f7fdf9;
+      background-color: #f7fdf9;
       color: #2c3e50;
-      padding: 20px;
     }
-    .calendar {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      font-size: 20px;
-      color: #2ecc71;
-    }
-    .header button {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: #2ecc71;
-    }
-    .weekdays, .days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      text-align: center;
-      margin-top: 10px;
-    }
-    .weekdays div {
-      font-weight: bold;
-      padding: 10px 0;
-    }
-    .days div {
-      padding: 10px 0;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-    .days div:hover {
-      background: #ecfdf2;
-      cursor: pointer;
-    }
-    .today {
+
+    header {
       background-color: #2ecc71;
       color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
     }
+
+    header img {
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .month-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 1rem;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .day-name {
+      font-weight: bold;
+      padding: 10px 0;
+      background: #ecfdf2;
+      border-radius: 5px;
+    }
+
+    .day {
+      padding: 10px 5px;
+      border-radius: 6px;
+      background: #f4fdf5;
+      position: relative;
+    }
+
+    .day.today {
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+    }
+
+    .day.exam::after {
+      content: "📕";
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 14px;
+    }
+
+    .day.holiday {
+      background: #ffeaa7;
+      color: #6d4c41;
+      font-weight: bold;
+    }
+
+    .day.event {
+      background: #a29bfe;
+      color: white;
+    }
+
+    .legend {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .legend span {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .legend i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .exam-color { background: #f44336; }
+    .holiday-color { background: #ffeaa7; }
+    .event-color { background: #a29bfe; }
   </style>
 </head>
 <body>
 
-<div class="calendar">
-  <div class="header">
-    <button onclick="prevMonth()">←</button>
-    <div id="monthYear"></div>
-    <button onclick="nextMonth()">→</button>
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/th/b/b7/MJU_LOGO.svg" alt="MJU Logo">
+  <h1>MJU Student Calendar</h1>
+</header>
+
+<div class="container">
+  <div class="month-title">กรกฎาคม 2025</div>
+  <div class="calendar">
+    <div class="day-name">อา</div>
+    <div class="day-name">จ</div>
+    <div class="day-name">อ</div>
+    <div class="day-name">พ</div>
+    <div class="day-name">พฤ</div>
+    <div class="day-name">ศ</div>
+    <div class="day-name">ส</div>
+
+    <!-- ช่องว่างก่อนวันที่ 1 -->
+    <div></div><div></div>
+
+    <!-- ปฏิทินรายวัน -->
+    <div class="day">1</div>
+    <div class="day">2</div>
+    <div class="day holiday">3</div> <!-- วันหยุด -->
+    <div class="day">4</div>
+    <div class="day">5</div>
+    <div class="day">6</div>
+    <div class="day">7</div>
+    <div class="day">8</div>
+    <div class="day">9</div>
+    <div class="day today">10</div> <!-- วันนี้ -->
+    <div class="day">11</div>
+    <div class="day event">12</div> <!-- มีกิจกรรม -->
+    <div class="day">13</div>
+    <div class="day">14</div>
+    <div class="day">15</div>
+    <div class="day exam">16</div> <!-- วันสอบ -->
+    <div class="day">17</div>
+    <div class="day">18</div>
+    <div class="day">19</div>
+    <div class="day">20</div>
+    <div class="day">21</div>
+    <div class="day">22</div>
+    <div class="day">23</div>
+    <div class="day holiday">24</div>
+    <div class="day">25</div>
+    <div class="day">26</div>
+    <div class="day event">27</div>
+    <div class="day">28</div>
+    <div class="day">29</div>
+    <div class="day">30</div>
+    <div class="day">31</div>
   </div>
-  <div class="weekdays">
-    <div>อา</div><div>จ</div><div>อ</div><div>พ</div><div>พฤ</div><div>ศ</div><div>ส</div>
+
+  <div class="legend">
+    <p>
+      <span><i class="exam-color"></i> 📕 วันสอบ</span>
+      <span><i class="holiday-color"></i> วันหยุด</span>
+      <span><i class="event-color"></i> วันกิจกรรม</span>
+    </p>
   </div>
-  <div class="days" id="calendarDays"></div>
 </div>
-
-<script>
-  const monthNames = [
-    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-    "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-  ];
-
-  let currentDate = new Date();
-
-  function renderCalendar() {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-
-    document.getElementById("monthYear").textContent = `${monthNames[month]} ${year}`;
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    const calendarDays = document.getElementById("calendarDays");
-    calendarDays.innerHTML = "";
-
-    for (let i = 0; i < firstDay; i++) {
-      calendarDays.innerHTML += `<div></div>`;
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const isToday =
-        day === new Date().getDate() &&
-        month === new Date().getMonth() &&
-        year === new Date().getFullYear();
-
-      calendarDays.innerHTML += `<div class="${isToday ? "today" : ""}">${day}</div>`;
-    }
-  }
-
-  function prevMonth() {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-  }
-
-  function nextMonth() {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-  }
-
-  renderCalendar();
-</script>
 
 </body>
 </html>
