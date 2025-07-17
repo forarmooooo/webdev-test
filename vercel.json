@@ -3,6 +3,10 @@
     {
       "source": "/",
       "destination": "/project.html"
+    },
+    {
+      "source": "/project",
+      "destination": "/project.html"
     }
 
 
