@@ -2,10 +2,14 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/project.html"
+      "destination": "/index.html"
     },
     {
       "source": "/project",
+      "destination": "/project.html"
+    },
+    {
+      "source": "/project.html",
       "destination": "/project.html"
     }
   ],
