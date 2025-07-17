@@ -8,8 +8,6 @@
       "source": "/project",
       "destination": "/project.html"
     }
-
-
   ],
   "cleanUrls": true,
   "trailingSlash": false
